@@ -9,6 +9,7 @@ if [[ $? -eq 0 ]];then
 		# 添加网卡 tap0 是虚拟网卡名字
 		tunctl -t tap0 -u root
 		ifconfig tap0 192.168.1.20 netmask 255.255.255.0 promisc
+	fi
 	
 else
 cat << EOF >> /etc/yum.repos.d/nux-misc.repo
