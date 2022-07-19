@@ -14,17 +14,17 @@ yum --enablerepo=nux-misc install tunctl -y
 tunctl -t tap0 -u root
 ifconfig tap0 192.168.1.20 netmask 255.255.255.0 promisc
 # 创建目录
-mkdir -p /usr/local/rocketmq/broker/{conf,logs,store}
-mkdir -p /usr/local/rocketmq/namesrv/{logs,store}
+mkdir -p ./broker/{conf,logs,store}
+mkdir -p ./namesrv/{logs,store}
 # 设置目录权限
-chmor chmod -R 777 /usr/local/rocketmq/broker/logs
-chmor chmod -R 777 /usr/local/rocketmq/broker/store
-chmor chmod -R 777 /usr/local/rocketmq/namesrv/logs
-chmor chmod -R 777 /usr/local/rocketmq/namesrv/store
+chmor chmod -R 777 ./broker/logs
+chmor chmod -R 777 ./broker/store
+chmor chmod -R 777 ./namesrv/logs
+chmor chmod -R 777 ./namesrv/store
 # 修改配置文件
 Ip=$(ip a | grep tap0 | grep inet | awk '{print $2}' | awk -F '/' '{print $1}')
 Ip2=$Ip":9876"
-cat << EOF >> /usr/local/rocketmq/broker/conf/broker.conf
+cat << EOF >> ./broker/conf/broker.conf
 brokerIP1=$Ip
 namesrvAddr=$Ip2
 EOF
