@@ -1,6 +1,7 @@
 #!/bin/bash
 # 添加虚拟网卡
 rpm -q tunctl &>/dev/null
+yum -y install iproute &>/dev/null
 if [[ $? -eq 0 ]];then
 	ip a | grep tap0 &>/dev/null
 	if [[ $? -eq 0 ]];then
